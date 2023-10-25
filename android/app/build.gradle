@@ -7,8 +7,6 @@ else {
     apply plugin: 'com.android.library'
 }
 
-def autobuildFlag = false
-
 android {
     ndkVersion "22.1.7171670"
     compileSdkVersion 29
@@ -20,11 +18,9 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.3.2"
-        if(project.hasProperty("RETRO_DISABLE_PLUS"))
-            autobuildFlag = true
         externalNativeBuild {
             cmake {
-                arguments "-DAPP_PLATFORM=android-16", "-DANDROID_STL=c++_static", "-DPLATFORM=Android", "-DRETRO_DISABLE_PLUS=$autobuildFlag"
+                arguments "-DAPP_PLATFORM=android-16", "-DANDROID_STL=c++_static", "-DPLATFORM=Android",
                 abiFilters 'armeabi-v7a', 'arm64-v8a'
             }
         }
